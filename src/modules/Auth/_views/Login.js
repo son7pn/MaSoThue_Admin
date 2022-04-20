@@ -5,8 +5,8 @@ import {setLoginStatus } from 'auth/_store/authSlice';
 import useRouter from 'hooks/useRouter';
 import { saveAuth, saveToken } from 'utils/jwt';
 import Logo from 'assets/images/logo-masothue.png';
-import { VALIDATE_MESSAGES, KEY } from 'modules/Commons/_store/constants';
-import { login , getProfile } from '../_api';
+import { VALIDATE_MESSAGES } from 'modules/Commons/_store/constants';
+import { login } from '../_api';
 
 import './../_styles/login.scss';
 import { openNotificationWithIcon } from 'helpers/funcs';
@@ -24,22 +24,19 @@ const Login = () => {
   const [form] = Form.useForm();
 
   const onSubmitLogin = (values) => {
-    const {email, password} =  values;
+    const {username, password} =  values;
     setLoading(true)
-    login(email,password).then(res => {
-      if (res && res.data.status === KEY.SUCCESS) {
-        console.log(res.data, 'data login')
-        const user = res.data.data
-        saveToken(user.token);
-        getProfile().then(res => {
-          if (res && res.data.status === KEY.SUCCESS) {
-            const profile = res.data.data;
-            console.log(profile,'profile');
-            saveAuth(profile);
-            dispatch(setLoginStatus(true))
-            router.push('/');
-          }
-        })
+    login(username,password).then(res => {
+      // console.log(res, 'data login')
+      if (res && res.data.success) {
+        const token = res.data.data.token
+        saveToken(token);
+        const profile = res.data.data.user;
+        saveAuth(profile);
+        dispatch(setLoginStatus(true))
+        router.push('/');
+      } else {
+        openNotificationWithIcon('error', res.data.message);
       }
     }).catch (error => {
       openNotificationWithIcon('error', error)
@@ -63,8 +60,8 @@ const Login = () => {
           onFinish={(values) => onSubmitLogin(values)}
         >
           <Form.Item
-            name="email"
-            label="Email"
+            name="username"
+            label="username"
             rules={[{ required: true }]}
           >
             <Input placeholder="Username" />
