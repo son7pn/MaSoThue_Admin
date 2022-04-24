@@ -2,7 +2,7 @@
 import HttpService from 'utils/http'
 
 export const uploadfile = (file) => {
-  let apiEndpoint = '/File/UploadImage';
+  let apiEndpoint = '/v1/upload/file';
   if (file) {
     return HttpService.uploadFile(apiEndpoint, { Files: file }).then(res => {
       return res && res.data ? res.data : null;

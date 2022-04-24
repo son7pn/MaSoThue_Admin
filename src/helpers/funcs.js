@@ -67,7 +67,12 @@ export const validationPhone = (rule, value, callback) => {
   }
   return callback('Số điện thoại chưa đúng định dạng');
 };
-
+export const validationEmail = (rule, value, callback) => {
+  if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
+    return callback();
+  }
+  return callback('Email chưa đúng định dạng');
+};
 export const mergeArrays = (arr1, arr2) =>
   arr1 && arr1.map((obj) => (arr2 && arr2.find((p) => p.id === obj.id)) || obj);
 

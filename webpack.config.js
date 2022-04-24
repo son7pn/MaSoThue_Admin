@@ -57,6 +57,10 @@ module.exports = {
       dashboard: path.resolve(__dirname, 'src/modules/Dashboard'),
       auth: path.resolve(__dirname, 'src/modules/Auth'),
       commons: path.resolve(__dirname, 'src/modules/Commons'),
+      system: path.resolve(__dirname, 'src/modules/System'),
+      banner: path.resolve(__dirname, 'src/modules/Banner'),
+      comment: path.resolve(__dirname, 'src/modules/Comment'),
+      article: path.resolve(__dirname, 'src/modules/Article'),
     }
 
   },

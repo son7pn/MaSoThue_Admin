@@ -17,9 +17,10 @@
     border: 1px solid $white;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 250px;
-    max-width: 250px;
-    flex: 0 0 250px;
+    width: 350px !important;
+    max-width: 350px !important;
+    min-width: unset !important;
+    flex: 0 0 300px !important;
     .icon-nav {
       position: absolute;
       right: 18px;
@@ -56,7 +57,7 @@
         &-selected {
           font-weight: bold;
           border-left: 5px solid $red_dark;
-          background-color: $gray-light;
+          background-color: $blue;
           a {
             color: $black
           }
@@ -346,4 +347,12 @@
 
 .ant-switch-checked {
   background-color: $green-done;
+}
+.ant-btn {
+  min-width: 100px;
+}
+.ant-pagination {
+  .ant-select-selector {
+    display: none !important;
+  }
 }

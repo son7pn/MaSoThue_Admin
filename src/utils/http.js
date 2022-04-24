@@ -95,6 +95,22 @@ class HttpService {
       );
   }
 
+  patch(apiEndpoint, payload) {
+    return axios
+      .patch(APP_CONFIG.apiUrl + apiEndpoint, payload, this.configRequest())
+      .then(
+        (res) => {
+          if (res.data && res.data.status === KEY.FAILED) {
+            this.hanleErorr(res.data.errors);
+          }
+          return res;
+        },
+        (err) => {
+          this.hanleErorr(err.response);
+        }
+      );
+  }
+
   delete(apiEndpoint) {
     return axios
       .delete(APP_CONFIG.apiUrl + apiEndpoint, this.configRequest())
