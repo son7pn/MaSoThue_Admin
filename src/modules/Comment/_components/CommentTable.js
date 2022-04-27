@@ -20,7 +20,7 @@ const BannerTable = (props) => {
         dataSource={data}
       >
         <Column 
-          title="Id"
+          title="STT"
           key="id"
           render={(text, record, index) => (
             <>

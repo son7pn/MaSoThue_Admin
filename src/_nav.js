@@ -19,6 +19,12 @@ export default {
       children: []
     },
     {
+      name: 'Quản lý danh sách Crawl',
+      url: '/crawl',
+      icon: 'icon-user2',
+      children: []
+    },
+    {
       name: 'Quản lý bình luận',
       url: '/comment',
       icon: 'icon-user2',

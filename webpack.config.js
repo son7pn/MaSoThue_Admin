@@ -61,6 +61,7 @@ module.exports = {
       banner: path.resolve(__dirname, 'src/modules/Banner'),
       comment: path.resolve(__dirname, 'src/modules/Comment'),
       article: path.resolve(__dirname, 'src/modules/Article'),
+      crawl: path.resolve(__dirname, 'src/modules/Crawl'),
     }
 
   },

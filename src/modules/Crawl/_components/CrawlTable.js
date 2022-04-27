@@ -8,9 +8,11 @@ import {Link} from 'react-router-dom';
 // import useRouter from 'hooks/useRouter';
 const { Column } = Table;
 const { Text } = Typography;
-const BannerTable = (props) => {
-  const { loading, data, handleChangePage, pagination } = props;
-  // const router = useRouter();
+const CrawlTable = (props) => {
+  const { loading, data, handleChangePage, pagination, handleSelectedRowKeys } = props;
+  const rowSelection = {
+    onChange: (selectedRowKeys) => handleSelectedRowKeys(selectedRowKeys)
+  };
   return (
     <div>
       <Table
@@ -22,6 +24,7 @@ const BannerTable = (props) => {
           showSizeChanger: true,
           onChange: (page) => handleChangePage(page),
         }}
+        rowSelection={rowSelection}
         loading={loading}
         rowKey={(record) => record.id}
         dataSource={data}
@@ -31,7 +34,7 @@ const BannerTable = (props) => {
           key="id"
           render={(text, record, index) => (
             <>
-              <Text><Link to={'/article'}>{index + 1}</Link></Text>
+              <Text><Link to={'/crawl'}>{index + 1}</Link></Text>
             </>
           )}
         />
@@ -40,7 +43,7 @@ const BannerTable = (props) => {
           key="tax"
           render={(record) => (
             <>
-              <Text><Link to={'/article'}>{ record.tax }</Link></Text>
+              <Text><Link to={'/crawl'}>{ record.tax }</Link></Text>
             </>
           )}
         />
@@ -49,7 +52,25 @@ const BannerTable = (props) => {
           key="compnayName"
           render={(record) => (
             <>
-              <Text><Link to={'/article'}>{ record.compnayName }</Link></Text>
+              <Text><Link to={'/crawl'}>{ record.compnayName }</Link></Text>
+            </>
+          )}
+        />
+        <Column 
+          title="Thành phố"
+          key="province"
+          render={(record) => (
+            <>
+              <Text><Link to={'/crawl'}>{ record.province }</Link></Text>
+            </>
+          )}
+        />
+        <Column 
+          title="Trạng thái chuyển đổi"
+          key="syncStatus"
+          render={(record) => (
+            <>
+              <Text><Link to={'/crawl'}>{ record.syncStatus ? 'Thành công' : 'Chưa chuyển đổi' }</Link></Text>
             </>
           )}
         />
@@ -69,7 +90,7 @@ const BannerTable = (props) => {
             <>
               <Link
                 className="mr-2 cusor-pointer"
-                to={'/article/edit?id=' + record.id}
+                to={'/crawl/edit?id=' + record.id}
               >
                 <EditOutlined />
               </Link>
@@ -84,7 +105,7 @@ const BannerTable = (props) => {
     </div>
   );
 };
-BannerTable.propTypes = {
+CrawlTable.propTypes = {
   loading: PropTypes.bool,
   data: PropTypes.array,
   sortNews: PropTypes.func,
@@ -92,6 +113,7 @@ BannerTable.propTypes = {
   pagination: PropTypes.any,
   handleChangePage: PropTypes.func,
   addChild: PropTypes.func,
-  newsTypeId: PropTypes.number
+  newsTypeId: PropTypes.number,
+  handleSelectedRowKeys: PropTypes.func,
 }
-export default BannerTable;
+export default CrawlTable;
