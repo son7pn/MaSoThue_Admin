@@ -22,3 +22,13 @@ export const editSystem = (payload) => {
       return false;
     });
 };
+export const getAllDataAbout = () => {
+  let apiEndpoint = '/v1/config/getbykey?key=ABOUTUS';
+  return HttpService.get(apiEndpoint)
+    .then((res) => {
+      return res.data;
+    })
+    .catch(() => {
+      return false;
+    });
+};

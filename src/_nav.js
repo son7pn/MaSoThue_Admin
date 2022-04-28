@@ -31,6 +31,12 @@ export default {
       children: []
     },
     {
+      name: 'Giới thiệu công ty',
+      url: '/about',
+      icon: 'icon-user2',
+      children: []
+    },
+    {
       name: 'Cài đặt hệ thống',
       url: '/system',
       icon: 'icon-user2',

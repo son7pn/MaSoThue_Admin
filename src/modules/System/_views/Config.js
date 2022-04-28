@@ -22,12 +22,12 @@ const Config = () => {
     await API.getAllDataSystem().then((res) => {
       if(res && res.data && res.success) {
         setDataDetail(res.data)
-        setImageUrlLogo(res.data[2].configContent)
+        setImageUrlLogo(res.data[3].configContent)
         form.setFieldsValue({
-          email: res.data[0].configContent,
-          hotline: res.data[1].configContent,
-          policy: res.data[3].configContent,
-          terms: res.data[4].configContent,
+          email: res.data[1].configContent,
+          hotline: res.data[2].configContent,
+          policy: res.data[4].configContent,
+          terms: res.data[5].configContent,
         });
       }
     })

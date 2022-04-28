@@ -10,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 const ConfigForm = (props) => {
   const {
     form,
-    lang,
     type,
     loading,
     getUrlImage,
@@ -69,7 +68,7 @@ const ConfigForm = (props) => {
         </Form.Item>
         <Form.Item
           className="font-weight-bold"
-          rules={lang === KEY.EN ? [{ required: true, message: 'Vui lòng nhập thông tin' }] : ''}
+          rules={[{ required: true, message: 'Vui lòng nhập thông tin' }]}
           label="Điều khoản sử dụng"
           name="terms"
         >
