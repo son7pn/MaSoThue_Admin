@@ -39,8 +39,8 @@ const Editor = (props) => {
   const imageHandler = () => {
     const input = document.createElement('input');
 
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
+    // input.setAttribute('type', 'file');
+    // input.setAttribute('accept', 'image/*');
     input.click();
     
     input.onchange = async () => {
