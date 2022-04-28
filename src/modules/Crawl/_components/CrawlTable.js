@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Typography } from 'antd';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
 // import {
 //   EditOutlined,
 // } from '@ant-design/icons';
@@ -53,6 +54,15 @@ const CrawlTable = (props) => {
           render={(record) => (
             <>
               <Text><Link to={'/crawl'}>{ record.compnayName }</Link></Text>
+            </>
+          )}
+        />
+        <Column 
+          title="Ngày tạo"
+          key="createdDate"
+          render={(record) => (
+            <>
+              <Text><Link to={'/crawl'}>{ moment(record.createdDate).format('DD/MM/YYYY HH:mm') }</Link></Text>
             </>
           )}
         />
