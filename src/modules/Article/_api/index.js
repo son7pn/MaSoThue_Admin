@@ -34,9 +34,9 @@ export const createBanner = (payload) => {
     });
 };
 
-export const editBanner = (payload) => {
-  let apiEndpoint = '/News/Update';
-  return HttpService.post(apiEndpoint, payload)
+export const editArticle = (payload) => {
+  let apiEndpoint = '/v1/article/update';
+  return HttpService.put(apiEndpoint, payload)
     .then((res) => {
       if (res.data) {
         return res.data;
@@ -47,8 +47,8 @@ export const editBanner = (payload) => {
       return false;
     });
 };
-export const getDetailBaner = (id) => {
-  let apiEndpoint = `/v1/Advs/getbyId/${id}`;
+export const getDetailArticle = (id) => {
+  let apiEndpoint = `/v1/article/detail/${id}`;
   return HttpService.get(apiEndpoint)
     .then((res) => {
       if (res.data) {
@@ -60,8 +60,8 @@ export const getDetailBaner = (id) => {
       return false;
     });
 };
-export const deleteBanner = (payload) => {
-  let apiEndpoint = `/News/Delete/${payload}`;
+export const deleteArticle = (id) => {
+  let apiEndpoint = `/v1/article/delete/${id}`;
   return HttpService.delete(apiEndpoint)
     .then((res) => {
       if (res.data) {

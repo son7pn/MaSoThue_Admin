@@ -4,9 +4,9 @@ import * as API from 'article/_api';
 // import { KEY } from 'commons/_store/constants';
 // import useRouter from 'hooks/useRouter';
 import ArticleTable from 'article/_components/ArticleTable';
-// import { openNotificationWithIcon } from 'helpers/funcs.js';
-// import { ExclamationCircleOutlined } from '@ant-design/icons';
-// import { Modal } from 'antd';
+import { openNotificationWithIcon } from 'helpers/funcs.js';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Modal } from 'antd';
 // import ActionBar from 'components/ActionBar';
 // import { useDispatch } from 'react-redux';
 // import { setParams } from 'news/_store/newsSlice';
@@ -14,7 +14,7 @@ import ActionSearch from 'components/ActionSearch';
 // import queryString from 'query-string';
 // import { NEWS_BUSINESS_AREAS, NEWS_INTRODUCE, NEWS_PRESS_INFORMATION, NEWS_TYPE } from '../../Commons/_store/constants';
 
-// const { confirm } = Modal;
+const { confirm } = Modal;
 const ArticleList = () => {
   // const { t } = useTranslation();
   // const router = useRouter();
@@ -87,6 +87,37 @@ const ArticleList = () => {
       getArticleList({ type: -1, pageIndex: page})
     }
   };
+  const deleteArticle = (id) => {
+    confirm({
+      title: `Bạn có chắc chắn muốn xóa ${id} ?`,
+      icon: <ExclamationCircleOutlined />,
+      okType: 'danger',
+      content: 'Thao tác này không thể khôi phục',
+      okText: 'Xóa',
+      cancelText: 'Hủy',
+      className: 'modal-delete-item',
+      onOk() {
+        setLoading(true);
+        API.deleteArticle(id)
+          .then((res) => {
+            console.log('ress: ', res);
+            if (res && res.success) {
+              openNotificationWithIcon('success', 'Thao tác thành công');
+              setLoading(false);
+              Modal.destroyAll();
+              getArticleList({ type: -1, pageIndex: 1})
+            }
+          })
+          .catch(() => {
+            setLoading(false);
+          })
+          .finnaly(() => {
+            setLoading(false);
+          });
+      },
+      onCancel() {},
+    });
+  };
   return (
     <div>
       <h2>Quản lý mã số thuế (Công ty, cá nhân)</h2>
@@ -103,6 +134,7 @@ const ArticleList = () => {
         loading={loading}
         pagination={pagination}
         handleChangePage={handleChangePage}
+        deleteArticle={deleteArticle}
       />
     </div>
   );

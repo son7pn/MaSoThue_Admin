@@ -73,3 +73,7 @@ export const GASOLINE = 1;
 export const OIL = 2;
 
 export const PARENT_ID_DEFAULT = 0;
+export const STATUS = {
+  IS_ACTIVE: 1,
+  NOT_ACTIVE: 0
+}

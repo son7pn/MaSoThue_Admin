@@ -2,14 +2,15 @@ import React from 'react';
 import { Table, Typography } from 'antd';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-// import {
-//   EditOutlined,
-// } from '@ant-design/icons';
+import {
+  EditOutlined,
+  DeleteOutlined,
+} from '@ant-design/icons';
 // import useRouter from 'hooks/useRouter';
 const { Column } = Table;
 const { Text } = Typography;
-const BannerTable = (props) => {
-  const { loading, data, handleChangePage, pagination } = props;
+const ArticleTable = (props) => {
+  const { loading, data, handleChangePage, pagination, deleteArticle } = props;
   // const router = useRouter();
   return (
     <div>
@@ -62,7 +63,7 @@ const BannerTable = (props) => {
             </>
           )}
         /> */}
-        {/* <Column
+        <Column
           title="Tùy chọn"
           key="title"
           render={(record) => (
@@ -75,23 +76,23 @@ const BannerTable = (props) => {
               </Link>
               <DeleteOutlined
                 className="mr-2 cusor-pointer text-red-delete"
-                onClick={() => deleteBanner(record.id)}
+                onClick={() => deleteArticle(record.id)}
               />
             </>
           )}
-        /> */}
+        />
       </Table>
     </div>
   );
 };
-BannerTable.propTypes = {
+ArticleTable.propTypes = {
   loading: PropTypes.bool,
   data: PropTypes.array,
   sortNews: PropTypes.func,
-  deleteBanner: PropTypes.func,
+  deleteArticle: PropTypes.func,
   pagination: PropTypes.any,
   handleChangePage: PropTypes.func,
   addChild: PropTypes.func,
   newsTypeId: PropTypes.number
 }
-export default BannerTable;
+export default ArticleTable;

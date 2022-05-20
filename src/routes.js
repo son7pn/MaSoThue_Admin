@@ -9,6 +9,7 @@ const CommentList = React.lazy(() => import('comment/_views/CommentList'));
 const ArticleList = React.lazy(() => import('article/_views/ArticleList'));
 const CrawlList = React.lazy(() => import('crawl/_views/CrawlList'));
 const About = React.lazy(() => import('system/_views/About'));
+const ArticleDetail = React.lazy(() => import('article/_views/ArticleDetail'))
 
 const routes = [
   { path: '/', exact: true, name: AUTH.MODULE_DASHBOARD , component: Dashboard }, 
@@ -19,6 +20,7 @@ const routes = [
   { path: '/banner/edit', exact: true, component: BannerDetail},
   { path: '/comment', exact: true, component: CommentList },
   { path: '/article', exact: true, component: ArticleList },
+  { path: '/article/edit', exact: true, component: ArticleDetail},
   { path: '/crawl', exact: true, component: CrawlList },
   { path: '/about', exact: true, component: About },
   
