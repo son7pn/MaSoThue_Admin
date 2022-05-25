@@ -9,7 +9,7 @@ import {
 // import useRouter from 'hooks/useRouter';
 const { Column } = Table;
 const { Text } = Typography;
-const BannerTable = (props) => {
+const AdvertisementTable = (props) => {
   const { loading, data, deleteBanner } = props;
   // const router = useRouter();
   return (
@@ -24,7 +24,7 @@ const BannerTable = (props) => {
           key="id"
           render={(text, record, index) => (
             <>
-              <Text><Link to={'/banner/detail?id='+ record.id}>{index + 1}</Link></Text>
+              <Text><Link to={'/advertisement/detail?id='+ record.id}>{index + 1}</Link></Text>
             </>
           )}
         />
@@ -33,7 +33,7 @@ const BannerTable = (props) => {
           key="name"
           render={(record) => (
             <>
-              <Text><Link to={'/banner/detail?id='+ record.id}>{ record.name }</Link></Text>
+              <Text><Link to={'/advertisement/detail?id='+ record.id}>{ record.name }</Link></Text>
             </>
           )}
         />
@@ -42,7 +42,7 @@ const BannerTable = (props) => {
           key="content"
           render={(record) => (
             <>
-              <Text><Link to={'/banner/detail?id='+ record.id}>{ record.content }</Link></Text>
+              <Text><Link to={'/advertisement/detail?id='+ record.id}>{ record.content }</Link></Text>
             </>
           )}
         />
@@ -53,7 +53,7 @@ const BannerTable = (props) => {
             <>
               {/* <Link
                 className="mr-2 cusor-pointer"
-                to={'/banner/edit?id=' + record.id}
+                to={'/advertisement/edit?id=' + record.id}
               >
                 <EditOutlined />
               </Link> */}
@@ -68,7 +68,7 @@ const BannerTable = (props) => {
     </div>
   );
 };
-BannerTable.propTypes = {
+AdvertisementTable.propTypes = {
   loading: PropTypes.bool,
   data: PropTypes.array,
   sortNews: PropTypes.func,
@@ -78,4 +78,4 @@ BannerTable.propTypes = {
   addChild: PropTypes.func,
   newsTypeId: PropTypes.number
 }
-export default BannerTable;
+export default AdvertisementTable;

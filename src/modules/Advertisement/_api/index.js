@@ -1,7 +1,7 @@
 import HttpService from 'utils/http';
 
 export const getAllDataBanner = (params) => {
-  let apiEndpoint = '/v1/Advs/GetListByPosition/1';
+  let apiEndpoint = '/v1/Advs/GetListByGroup';
   return HttpService.get(apiEndpoint, params)
     .then((res) => {
       return res;

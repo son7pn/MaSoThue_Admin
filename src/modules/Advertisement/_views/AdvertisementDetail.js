@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from 'antd';
-import BannerForm from 'banner/_components/BannerForm';
+import AdvertisementForm from 'advertisement/_components/AdvertisementForm';
 import { KEY } from 'commons/_store/constants';
 import useRouter from 'hooks/useRouter';
 import { beforeUpload, getUrlImage } from 'helpers/funcs.js';
 import { uploadfile } from 'commons/_api';
 import ActionBar from 'components/ActionBar';
-import * as API from 'banner/_api';
+import * as API from 'advertisement/_api';
 import { openNotificationWithIcon } from 'helpers/funcs.js';
 import { useTranslation } from 'react-i18next';
 
-const BannerDetail = () => {
+const AdvertisementDetail = () => {
   const [form] = Form.useForm();
   const router = useRouter();
   const { t } = useTranslation();
@@ -63,15 +63,16 @@ const BannerDetail = () => {
         console.log('value: ', values);
         values['Id'] = 0;
         values['Name'] = values.name || '';
-        values['position'] = 1;
-        values['type'] = 1;
-        values['group'] = 'slide';
-        values['Url'] = values.url || '';
+        values['position'] = values.position || null;
+        values['type'] = values.type || null;
+        values['group'] = 'ads';
+        values['url'] = values.url || '';
         values['content'] = values.content || '';
         values['isEnable'] = true;
         values['thumb'] = imageUrlBanner;
         API.createBanner(values)
           .then((res) => {
+            console.log('res create: ', res);
             if (res && res.success) {
               openNotificationWithIcon('success', t('common.successMessage'));
               redirectBack()
@@ -88,9 +89,9 @@ const BannerDetail = () => {
       form.validateFields().then((values) => {
         values['Id'] = dataDetail.id;
         values['Name'] = values.name || '';
-        values['position'] = 1;
-        values['type'] = 1;
-        values['group'] = 'slide';
+        values['position'] = values.position || null;
+        values['type'] = values.type || null;
+        values['group'] = 'ads';
         values['url'] = values.url || '';
         values['content'] = values.content || '';
         values['isEnable'] = true;
@@ -113,7 +114,7 @@ const BannerDetail = () => {
   };
   
   const redirectBack = () => {
-    router.push('/banner')
+    router.push('/advertisement')
   };
 
   const getDetailBaner = (id) => {
@@ -125,6 +126,8 @@ const BannerDetail = () => {
           name: res.data.name,
           url: res.data.url,
           content: res.data.content,
+          type: res.data.type,
+          position: res.data.position,
         });
       })
       .catch(() => {
@@ -140,17 +143,17 @@ const BannerDetail = () => {
         <ActionBar isBtnSave={true} handleClickBtn={() => actionItemBanner} />
       )}
       <div className="common-box mt-3">
-        <BannerForm
+        <AdvertisementForm
           form={form}
           loading={loading}
           handleChangeImageBanner={handleChangeImageBanner}
           getUrlImage={getUrlImage}
           imageUrlBanner={imageUrlBanner}
-          type={type}
+          typePage={type}
         />
       </div>
     </div>
   );
 };
 
-export default BannerDetail;
+export default AdvertisementDetail;

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Button, Input } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 // import { useTranslation } from 'react-i18next';
 import * as API from 'article/_api';
 // import { KEY } from 'commons/_store/constants';
@@ -11,6 +13,7 @@ import { Modal } from 'antd';
 // import { useDispatch } from 'react-redux';
 // import { setParams } from 'news/_store/newsSlice';
 import ActionSearch from 'components/ActionSearch';
+import * as xlsx from 'xlsx/xlsx.mjs';
 // import queryString from 'query-string';
 // import { NEWS_BUSINESS_AREAS, NEWS_INTRODUCE, NEWS_PRESS_INFORMATION, NEWS_TYPE } from '../../Commons/_store/constants';
 
@@ -118,10 +121,47 @@ const ArticleList = () => {
       onCancel() {},
     });
   };
+
+  const readUploadFile = (e) => {
+    e.preventDefault();
+    console.log('e.target.files: ', e.target.files);
+    if (e.target.files) {
+      console.log('aaaa');
+      const name = e.target.files[0].name;
+      const typeFile = name.split('.').pop()
+      if (typeFile !== 'xlsx') {
+        return openNotificationWithIcon('error', 'Import file Excel!');
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = e.target.result;
+        const workbook = xlsx.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const json = xlsx.utils.sheet_to_json(worksheet);
+        console.log(JSON.stringify(json));
+      };
+      reader.readAsArrayBuffer(e.target.files[0]);
+    }
+  };
+
   return (
     <div>
-      <h2>Quản lý mã số thuế (Công ty, cá nhân)</h2>
+      {/* <h2>Quản lý mã số thuế (Công ty, cá nhân)</h2> */}
       {/* <ActionBar isBtnAdd handleClickBtn={() => redirectTo} /> */}
+      {/* <input
+        type="file"
+        name="upload"
+        id="upload"
+        onChange={readUploadFile}
+      /> */}
+      <div className='display-flex-center justify-content-between full-width'>
+        <h2>Quản lý mã số thuế (Công ty, cá nhân)</h2>
+        <Button type="primary" shape="round" className='position-rel' icon={<UploadOutlined />}>
+          Import
+          <Input type="file" className='position-abs' id='input-upload-xlsx' name="upload"  onChange={readUploadFile}/>
+        </Button>
+      </div>
       <ActionSearch
         style={{ maxWidth: '600px', minWidth: '400px' }}
         placeholder="search"

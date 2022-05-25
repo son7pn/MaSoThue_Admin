@@ -38,7 +38,15 @@ const BannerForm = (props) => {
           className="font-weight-bold"
           rules={[{ required: true, message: 'Vui lòng nhập thông tin' }]}
           label="Contnet"
-          name="thumb"
+          name="content"
+        >
+          <Input readOnly={type === KEY.DETAIL}/>
+        </Form.Item>
+        <Form.Item
+          className="font-weight-bold"
+          rules={[{ required: true, message: 'Vui lòng nhập thông tin' }]}
+          label="Url"
+          name="url"
         >
           <Input readOnly={type === KEY.DETAIL}/>
         </Form.Item>
@@ -47,7 +55,7 @@ const BannerForm = (props) => {
             <Form.Item
               className="font-weight-bold"
               label="Ảnh Banner"
-              name="url"
+              name="urlImage"
             >
               <Upload
                 disabled={type === KEY.DETAIL}

@@ -13,6 +13,12 @@ export default {
       children: []
     },
     {
+      name: 'Quản lý advertisement',
+      url: '/advertisement',
+      icon: 'icon-user2',
+      children: []
+    },
+    {
       name: 'Quản lý mã số thuế',
       url: '/article',
       icon: 'icon-user2',

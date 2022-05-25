@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 // import { useTranslation } from 'react-i18next';
-import * as API from 'banner/_api';
+import * as API from 'advertisement/_api';
 // import { KEY } from 'commons/_store/constants';
 import useRouter from 'hooks/useRouter';
-import BannerTable from 'banner/_components/BannerTable';
+import AdvertisementTable from 'advertisement/_components/AdvertisementTable';
 import { openNotificationWithIcon } from 'helpers/funcs.js';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
@@ -15,7 +15,7 @@ import ActionBar from 'components/ActionBar';
 // import { NEWS_BUSINESS_AREAS, NEWS_INTRODUCE, NEWS_PRESS_INFORMATION, NEWS_TYPE } from '../../Commons/_store/constants';
 
 const { confirm } = Modal;
-const BannerList = () => {
+const AdvertisementList = () => {
   // const { t } = useTranslation();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -34,8 +34,7 @@ const BannerList = () => {
     try {
       setLoading(true);
       const params = {
-        type: 1,
-        group: 'slide'
+        group: 'ads'
       };
       await API.getAllDataBanner(params).then((res) => {
         // console.log('res: ', res);
@@ -111,12 +110,12 @@ const BannerList = () => {
     // }
     // const paramStr = queryString.stringify(_params)
     router.push({
-      pathname: '/banner/add'
+      pathname: '/advertisement/add'
     });
   };
   return (
     <div>
-      <h2>Banner</h2>
+      <h2>Advertisement</h2>
       <ActionBar isBtnAdd handleClickBtn={() => redirectTo} />
       {/* <ActionSearch
         style={{ maxWidth: '600px', minWidth: '400px' }}
@@ -125,7 +124,7 @@ const BannerList = () => {
         onSearch={onChangeSearch}
         onChange={handleSetKeyWord}
       /> */}
-      <BannerTable
+      <AdvertisementTable
         data={listBanner}
         loading={loading}
         deleteBanner={deleteBanner}
@@ -134,4 +133,4 @@ const BannerList = () => {
   );
 };
 
-export default BannerList;
+export default AdvertisementList;

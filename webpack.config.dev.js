@@ -64,6 +64,7 @@ module.exports = {
       comment: path.resolve(__dirname, 'src/modules/Comment'),
       article: path.resolve(__dirname, 'src/modules/Article'),
       crawl: path.resolve(__dirname, 'src/modules/Crawl'),
+      advertisement: path.resolve(__dirname, 'src/modules/Advertisement'),
     }
   },
   plugins: [

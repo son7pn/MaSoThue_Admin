@@ -7,7 +7,7 @@ import CrawlTable from 'crawl/_components/CrawlTable';
 // import { openNotificationWithIcon } from 'helpers/funcs.js';
 // import { ExclamationCircleOutlined } from '@ant-design/icons';
 // import { Modal } from 'antd';
-import ActionBar from 'components/ActionBar';
+// import ActionBar from 'components/ActionBar';
 // import { useDispatch } from 'react-redux';
 // import { setParams } from 'news/_store/newsSlice';
 import ActionSearch from 'components/ActionSearch';
@@ -73,13 +73,13 @@ const CrawlList = () => {
   const handleSelectedRowKeys = (data) => {
     console.log('data: ', data);
   };
-  const actionSave  = () => {
-    console.log('submit');
-  }
+  // const actionSave  = () => {
+  //   console.log('submit');
+  // }
   return (
     <div>
       <h2>Quản lý danh sách Crawl</h2>
-      <ActionBar isBtnSave handleClickBtn={() => actionSave} />
+      {/* <ActionBar isBtnSave handleClickBtn={() => actionSave} /> */}
       <ActionSearch
         style={{ maxWidth: '600px', minWidth: '400px' }}
         placeholder="search"
