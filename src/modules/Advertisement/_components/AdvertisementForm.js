@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import useRouter from 'hooks/useRouter';
 import { Form, Input, Row, Col, Upload, Image, Select } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { KEY, NO_IMAGE } from 'commons/_store/constants';
@@ -15,7 +16,8 @@ const AdvertisementForm = (props) => {
     typePage,
   } = props;
   const { t } = useTranslation();
-  const [typeAds, setTypeAds] = useState(1)
+  const [typeAds, setTypeAds] = useState(1);
+  const router = useRouter();
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -24,6 +26,15 @@ const AdvertisementForm = (props) => {
       </div>
     </div>
   );
+  useEffect (() => {
+    if (router.pathname.includes(KEY.EDIT)) {
+      setTimeout(() => {
+        setTypeAds(form.getFieldValue('type'));
+        console.log('form: ', form.getFieldValue('type'));
+      }, 300)
+    }
+  }, []);
+
 
   const listPositionType = [
     {

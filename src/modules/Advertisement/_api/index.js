@@ -25,8 +25,8 @@ export const createBanner = (payload) => {
 };
 
 export const editBanner = (payload) => {
-  let apiEndpoint = '/News/Update';
-  return HttpService.post(apiEndpoint, payload)
+  let apiEndpoint = '/v1/Advs/update';
+  return HttpService.put(apiEndpoint, payload)
     .then((res) => {
       if (res.data) {
         return res.data;

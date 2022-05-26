@@ -61,7 +61,7 @@ const BannerDetail = () => {
     case KEY.ADD: {
       form.validateFields().then((values) => {
         console.log('value: ', values);
-        values['Id'] = 0;
+        values['id'] = 0;
         values['Name'] = values.name || '';
         values['position'] = 1;
         values['type'] = 1;
@@ -73,7 +73,7 @@ const BannerDetail = () => {
         API.createBanner(values)
           .then((res) => {
             if (res && res.success) {
-              openNotificationWithIcon('success', t('common.successMessage'));
+              openNotificationWithIcon('success', 'Thêm mới thành công!');
               redirectBack()
             }
           })
@@ -86,7 +86,7 @@ const BannerDetail = () => {
     }
     case KEY.EDIT: {
       form.validateFields().then((values) => {
-        values['Id'] = dataDetail.id;
+        values['id'] = dataDetail.id;
         values['Name'] = values.name || '';
         values['position'] = 1;
         values['type'] = 1;
@@ -97,8 +97,8 @@ const BannerDetail = () => {
         values['thumb'] = imageUrlBanner;
         API.editBanner(values)
           .then((res) => {
-            if (res.status === KEY.SUCCESS) {
-              openNotificationWithIcon('success', t('common.successMessage'));
+            if (res && res.success) {
+              openNotificationWithIcon('success', 'Chỉnh sửa thành công!');
               redirectBack()
             }
           })

@@ -3,7 +3,7 @@ import { Table, Typography } from 'antd';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {
-  // EditOutlined,
+  EditOutlined,
   DeleteOutlined,
 } from '@ant-design/icons';
 // import useRouter from 'hooks/useRouter';
@@ -51,12 +51,12 @@ const BannerTable = (props) => {
           key="title"
           render={(record) => (
             <>
-              {/* <Link
+              <Link
                 className="mr-2 cusor-pointer"
                 to={'/banner/edit?id=' + record.id}
               >
                 <EditOutlined />
-              </Link> */}
+              </Link>
               <DeleteOutlined
                 className="mr-2 cusor-pointer text-red-delete"
                 onClick={() => deleteBanner(record.id)}

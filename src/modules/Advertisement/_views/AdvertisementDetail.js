@@ -61,7 +61,7 @@ const AdvertisementDetail = () => {
     case KEY.ADD: {
       form.validateFields().then((values) => {
         console.log('value: ', values);
-        values['Id'] = 0;
+        values['id'] = 0;
         values['Name'] = values.name || '';
         values['position'] = values.position || null;
         values['type'] = values.type || null;
@@ -74,7 +74,7 @@ const AdvertisementDetail = () => {
           .then((res) => {
             console.log('res create: ', res);
             if (res && res.success) {
-              openNotificationWithIcon('success', t('common.successMessage'));
+              openNotificationWithIcon('success', 'Thêm mới thành công!');
               redirectBack()
             }
           })
@@ -87,7 +87,7 @@ const AdvertisementDetail = () => {
     }
     case KEY.EDIT: {
       form.validateFields().then((values) => {
-        values['Id'] = dataDetail.id;
+        values['id'] = dataDetail.id;
         values['Name'] = values.name || '';
         values['position'] = values.position || null;
         values['type'] = values.type || null;
@@ -98,8 +98,8 @@ const AdvertisementDetail = () => {
         values['thumb'] = imageUrlBanner;
         API.editBanner(values)
           .then((res) => {
-            if (res.status === KEY.SUCCESS) {
-              openNotificationWithIcon('success', t('common.successMessage'));
+            if (res && res.success) {
+              openNotificationWithIcon('success', 'Chỉnh sửa thành công!');
               redirectBack()
             }
           })

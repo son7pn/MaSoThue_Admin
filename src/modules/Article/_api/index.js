@@ -73,3 +73,17 @@ export const deleteArticle = (id) => {
       return false;
     });
 };
+
+export const importExcelArticle = (payload) => {
+  let apiEndpoint = '/v1/article/import';
+  return HttpService.post(apiEndpoint, payload)
+    .then((res) => {
+      if (res.data) {
+        return res.data;
+      }
+      return [];
+    })
+    .catch(() => {
+      return false;
+    });
+}

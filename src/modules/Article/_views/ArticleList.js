@@ -124,9 +124,8 @@ const ArticleList = () => {
 
   const readUploadFile = (e) => {
     e.preventDefault();
-    console.log('e.target.files: ', e.target.files);
+    // console.log('e.target.files: ', e.target.files);
     if (e.target.files) {
-      console.log('aaaa');
       const name = e.target.files[0].name;
       const typeFile = name.split('.').pop()
       if (typeFile !== 'xlsx') {
@@ -140,6 +139,29 @@ const ArticleList = () => {
         const worksheet = workbook.Sheets[sheetName];
         const json = xlsx.utils.sheet_to_json(worksheet);
         console.log(JSON.stringify(json));
+        console.log(Array.isArray(json));
+        if (Array.isArray(json) && json.length > 0) {
+          const payload = [];
+          json.map((item) => {
+            const { tax, phone, address, companyName, createdDate, director, gender, businessType, capacity } = item;
+            const itemNew = { tax, phone, address, companyName, createdDate, director, gender, businessType, capacity };
+            payload.push(itemNew);
+          })
+          setLoading(true);
+          API.importExcelArticle(JSON.stringify(payload)).then((res) => {
+            if (res) {
+              getArticleList({ type: -1, pageIndex: 1})
+              openNotificationWithIcon('success', 'Thao tác thành công');
+              setLoading(false);
+            }
+          })
+            .catch(() => {
+              setLoading(false);
+            })
+            .finnaly(() => {
+              setLoading(false);
+            });
+        }
       };
       reader.readAsArrayBuffer(e.target.files[0]);
     }
