@@ -31,7 +31,7 @@ const AdvertisementForm = (props) => {
       setTimeout(() => {
         setTypeAds(form.getFieldValue('type'));
         console.log('form: ', form.getFieldValue('type'));
-      }, 300)
+      }, 1000)
     }
   }, []);
 
