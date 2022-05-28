@@ -137,7 +137,7 @@ const AdvertisementForm = (props) => {
             label="Code"
             name="content"
           >
-            <Input readOnly={typePage === KEY.DETAIL}/>
+            <Input.TextArea readOnly={typePage === KEY.DETAIL} placeholder="Mã code google Ads" rows={3} />
           </Form.Item>
         )}
         {typeAds === 1 && (
