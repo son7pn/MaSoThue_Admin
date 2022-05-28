@@ -24,6 +24,9 @@ const AdvertisementDetail = () => {
     if (router.pathname.includes(KEY.ADD)) {
       setTitle('Thêm mới');
       setType(KEY.ADD);
+      form.setFieldsValue({
+        isEnable: true,
+      });
     } else if (router.pathname.includes(KEY.EDIT)) {
       setTitle('Sửa');
       setType(KEY.EDIT);
@@ -68,7 +71,7 @@ const AdvertisementDetail = () => {
         values['group'] = 'ads';
         values['url'] = values.url || '';
         values['content'] = values.content || '';
-        values['isEnable'] = true;
+        values['isEnable'] = values.isEnable || null;
         values['thumb'] = imageUrlBanner;
         API.createBanner(values)
           .then((res) => {
@@ -94,7 +97,8 @@ const AdvertisementDetail = () => {
         values['group'] = 'ads';
         values['url'] = values.url || '';
         values['content'] = values.content || '';
-        values['isEnable'] = true;
+        // eslint-disable-next-line no-self-assign
+        values['isEnable'] = values.isEnable;
         values['thumb'] = imageUrlBanner;
         API.editBanner(values)
           .then((res) => {
@@ -128,6 +132,7 @@ const AdvertisementDetail = () => {
           content: res.data.content,
           type: res.data.type,
           position: res.data.position,
+          isEnable: res.data.isEnable,
         });
       })
       .catch(() => {

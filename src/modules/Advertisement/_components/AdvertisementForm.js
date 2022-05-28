@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useRouter from 'hooks/useRouter';
-import { Form, Input, Row, Col, Upload, Image, Select } from 'antd';
+import { Form, Input, Row, Col, Upload, Image, Select, Radio } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { KEY, NO_IMAGE } from 'commons/_store/constants';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -69,6 +69,17 @@ const AdvertisementForm = (props) => {
   return (
     <div>
       <Form form={form} layout="vertical">
+        <Form.Item
+          className="font-weight-bold"
+          label="Trạng thái"
+          name="isEnable"
+          rules={[{ required: true, message: 'Vui lòng nhập thông tin' }]}
+        >
+          <Radio.Group>
+            <Radio value={true}>Hiển thị Advertisement</Radio>
+            <Radio value={false}>Ẩn Advertisement</Radio>
+          </Radio.Group>
+        </Form.Item>
         <Form.Item
           className="font-weight-bold"
           rules={[{ required: true, message: 'Vui lòng nhập thông tin' }]}

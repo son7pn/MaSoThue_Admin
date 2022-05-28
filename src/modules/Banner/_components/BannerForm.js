@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, Row, Col, Upload, Image } from 'antd';
+import { Form, Input, Row, Col, Upload, Image, Radio } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { KEY, NO_IMAGE } from 'commons/_store/constants';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -26,6 +26,17 @@ const BannerForm = (props) => {
   return (
     <div>
       <Form form={form} layout="vertical">
+        <Form.Item 
+          className="font-weight-bold"
+          label="Trạng thái"
+          name="isEnable"
+          rules={[{ required: true, message: 'Vui lòng nhập thông tin' }]}
+        >
+          <Radio.Group>
+            <Radio value={true}>Hiển thị Banner</Radio>
+            <Radio value={false}>Ẩn Banner</Radio>
+          </Radio.Group>
+        </Form.Item>
         <Form.Item
           className="font-weight-bold"
           rules={[{ required: true, message: 'Vui lòng nhập thông tin' }]}

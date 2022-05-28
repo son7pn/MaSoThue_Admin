@@ -38,11 +38,21 @@ const AdvertisementTable = (props) => {
           )}
         />
         <Column 
+          width={35}
           title="Content"
           key="content"
           render={(record) => (
             <>
               <Text><Link to={'/advertisement/detail?id='+ record.id}>{ record.content }</Link></Text>
+            </>
+          )}
+        />
+        <Column 
+          title="Position"
+          key="position"
+          render={(record) => (
+            <>
+              <Text>{ record.position === 1 ? 'Hiển thị header' : record.position === 2 ? 'Hiển thị cột phải trên' : 'Hiển thị cuối danh sách bài viết'  }</Text>
             </>
           )}
         />
