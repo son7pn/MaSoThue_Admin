@@ -1,5 +1,40 @@
-export default {
-  items: [
+import { getAuth } from 'utils/jwt';
+const authInfo = getAuth();
+let listmenu = []
+if (authInfo.type === 2) {
+  const data = [
+    {
+      name: 'Tổng quan',
+      url: '/',
+      icon: 'icon-home',
+      children: []
+    },
+    {
+      name: 'Quản lý bình luận',
+      url: '/comment',
+      icon: 'icon-user2',
+      children: []
+    },
+  ]
+  listmenu = data
+} else if (authInfo.type === 3) {
+  const data = [
+    {
+      name: 'Tổng quan',
+      url: '/',
+      icon: 'icon-home',
+      children: []
+    },
+    {
+      name: 'Quản lý mã số thuế',
+      url: '/article',
+      icon: 'icon-user2',
+      children: []
+    },
+  ]
+  listmenu = data
+} else {
+  const data = [
     {
       name: 'Tổng quan',
       url: '/',
@@ -48,5 +83,10 @@ export default {
       icon: 'icon-user2',
       children: []
     },
-  ],
+  ]
+  listmenu = data
+}
+
+export default {
+  items: listmenu
 };

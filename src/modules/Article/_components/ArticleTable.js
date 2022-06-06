@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Typography } from 'antd';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import { getAuth } from 'utils/jwt';
 import {
   EditOutlined,
   DeleteOutlined,
@@ -11,6 +12,7 @@ const { Column } = Table;
 const { Text } = Typography;
 const ArticleTable = (props) => {
   const { loading, data, handleChangePage, pagination, deleteArticle } = props;
+  const authInfo = getAuth();
   // const router = useRouter();
   return (
     <div>
@@ -74,10 +76,12 @@ const ArticleTable = (props) => {
               >
                 <EditOutlined />
               </Link>
-              <DeleteOutlined
-                className="mr-2 cusor-pointer text-red-delete"
-                onClick={() => deleteArticle(record.id)}
-              />
+              {authInfo && authInfo.type ===1 && (
+                <DeleteOutlined
+                  className="mr-2 cusor-pointer text-red-delete"
+                  onClick={() => deleteArticle(record.id)}
+                />
+              )}
             </>
           )}
         />
