@@ -1,7 +1,7 @@
 import { getAuth } from 'utils/jwt';
 const authInfo = getAuth();
 let listmenu = []
-if (authInfo.type === 2) {
+if (authInfo && authInfo.type === 2) {
   const data = [
     {
       name: 'Tổng quan',
@@ -17,7 +17,7 @@ if (authInfo.type === 2) {
     },
   ]
   listmenu = data
-} else if (authInfo.type === 3) {
+} else if (authInfo && authInfo.type === 3) {
   const data = [
     {
       name: 'Tổng quan',

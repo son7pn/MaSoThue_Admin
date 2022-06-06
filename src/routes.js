@@ -16,21 +16,21 @@ const AdvertisementList = React.lazy(() => import('advertisement/_views/Advertis
 const AdvertisementDetail = React.lazy(() => import('advertisement/_views/AdvertisementDetail'));
 let routes = [];
 
-if (authInfo.type === 2) {
-  const data = [
+if (authInfo && authInfo.type === 2) {
+  routes = [
     { path: '/', exact: true, name: AUTH.MODULE_DASHBOARD , component: Dashboard }, 
     { path: '/comment', exact: true, component: CommentList },
   ]
-  routes = data
-} else if (authInfo.type === 3) {
-  const data = [
+  // routes = data
+} else if (authInfo && authInfo.type === 3) {
+  routes = [
     { path: '/', exact: true, name: AUTH.MODULE_DASHBOARD , component: Dashboard }, 
     { path: '/article', exact: true, component: ArticleList },
     { path: '/article/edit', exact: true, component: ArticleDetail},
   ]
-  routes = data
+  // routes = data
 } else {
-  const data = [
+  routes = [
     { path: '/', exact: true, name: AUTH.MODULE_DASHBOARD , component: Dashboard }, 
     { path: '/system', exact: true, component: Config },
     { path: '/banner', exact: true, component: BannerList },
@@ -47,7 +47,7 @@ if (authInfo.type === 2) {
     { path: '/advertisement/detail', exact: true, component: AdvertisementDetail},
     { path: '/advertisement/edit', exact: true, component: AdvertisementDetail},
   ]
-  routes = data
+  // routes = data
 }
 // const routes = [
 //   { path: '/', exact: true, name: AUTH.MODULE_DASHBOARD , component: Dashboard }, 

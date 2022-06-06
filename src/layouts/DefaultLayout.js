@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useLayoutEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import { isLogin } from 'utils/jwt';
@@ -25,11 +25,12 @@ const Page404 = Loadable({
 
 const DefaultLayout = () => {
   const router = useRouter();
-
-  if (!isLogin()) {
-    router.push('/login');
-    return false;
-  }
+  // console.log('aaaaaaaaa isLogin', isLogin);
+  useLayoutEffect(() => {
+    if (!isLogin()) {
+      router.push('/login');
+    }
+  });
 
   return (
     <Layout

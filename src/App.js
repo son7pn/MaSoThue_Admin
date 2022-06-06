@@ -8,6 +8,7 @@ import 'assets/scss/_style.scss';
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">Loading...</div>
 );
+console.log('history', history);
 
 const DefaultLayout = Loadable({
   loader: () => import('src/layouts/DefaultLayout'),
